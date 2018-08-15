@@ -36,12 +36,20 @@ class FeedFinder(object):
         return self.is_feed_data(text)
 
     def is_feed_url(self, url):
-        return any(map(url.lower().endswith,
-                       [".rss", ".rdf", ".xml", ".atom"]))
+        return any(
+            map(
+                url.lower().endswith,
+                [".rss", ".rdf", ".xml", ".atom"]
+            )
+        )
 
     def is_feedlike_url(self, url):
-        return any(map(url.lower().count,
-                       ["rss", "rdf", "xml", "atom", "feed"]))
+        return any(
+            map(
+                url.lower().count,
+                ["rss", "rdf", "xml", "atom", "feed"]
+            )
+        )
 
     def sort_urls(self, feeds):
         return sorted(list(set(feeds)), key=self.url_feed_prob, reverse=True)
@@ -51,8 +59,8 @@ class FeedFinder(object):
             return -2
         if "georss" in url:
             return -1
-        kw = ["atom", "rss", "rdf", ".xml", "feed"]
-        for p, t in zip(range(len(kw), 0, -1), kw):
+        keywords = ["atom", "rss", "rdf", ".xml", "feed"]
+        for p, t in zip(range(len(keywords), 0, -1), keywords):
             if t in url:
                 return p
         return 0
@@ -117,6 +125,10 @@ class FeedFinder(object):
         # Guessing potential URLs.
         fns = ["atom.xml", "index.atom", "index.rdf", "rss.xml", "index.xml",
                "index.rss"]
-        urls += list(filter(self.is_feed, [urlparse.urljoin(url, f)
-                                             for f in fns]))
+        urls += list(
+            filter(
+                self.is_feed,
+                [urlparse.urljoin(url, f) for f in fns]
+            )
+        )
         return self.sort_urls(urls)
