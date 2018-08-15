@@ -3,6 +3,8 @@
 
 from __future__ import print_function
 
+__version__ = "0.0.5"
+
 try:
     __FEEDFINDER2_SETUP__
 except NameError:
@@ -14,18 +16,35 @@ if not __FEEDFINDER2_SETUP__:
     from components.finders import (
         FeedFinder,
     )
+    from components.validators import (
+        FeedValidator,
+    )
 
 
-
-def find_feeds(url, check_all=False, user_agent=None, timeout=None):
+def find_feeds(url,
+               check_all=False,
+               user_agent=None,
+               timeout=None,
+               validate_options=None):
     finder = FeedFinder(user_agent=user_agent, timeout=timeout)
-    return finder.find_feeds(url, check_all)
+    feeds = finder.find_feeds(url, check_all)
+    if validate_options:
+        feeds = [
+            feed for feed in feeds
+            if FeedValidator(feed, **validate_options).is_valid
+        ]
+    return feeds
 
 
 if __name__ == "__main__":
     print(find_feeds("www.preposterousuniverse.com/blog/", timeout=1))
     print(find_feeds("www.preposterousuniverse.com/blog/"))
-    print(find_feeds("http://xkcd.com"))
+    print(find_feeds("http://xkcd.com",
+                     validate_options={
+                         'max_day_interval': 1
+                     }
+                     )
+          )
     print(find_feeds("dan.iel.fm/atom.xml"))
     print(find_feeds("dan.iel.fm", check_all=True))
     print(find_feeds("kapadia.github.io"))

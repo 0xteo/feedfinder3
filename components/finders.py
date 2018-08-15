@@ -18,8 +18,8 @@ class FeedFinder(object):
         try:
             r = requests.get(url, headers={"User-Agent": self.user_agent}, timeout=self.timeout)
         except Exception as e:
-            logging.warn("Error while getting '{0}'".format(url))
-            logging.warn("{0}".format(e))
+            logging.warning("Error while getting '{0}'".format(url))
+            logging.warning("{0}".format(e))
             return None
         return r.text
 
@@ -112,14 +112,14 @@ class FeedFinder(object):
         local = [urlparse.urljoin(url, l) for l in local]
         urls += list(filter(self.is_feed, local))
         logging.info("Found {0} local <a> links to feeds.".format(len(urls)))
-        if len(urls) and not check_all:
+        if urls and not check_all:
             return self.sort_urls(urls)
 
         # Check the remote URLs.
         remote = [urlparse.urljoin(url, l) for l in remote]
         urls += list(filter(self.is_feed, remote))
         logging.info("Found {0} remote <a> links to feeds.".format(len(urls)))
-        if len(urls) and not check_all:
+        if urls and not check_all:
             return self.sort_urls(urls)
 
         # Guessing potential URLs.

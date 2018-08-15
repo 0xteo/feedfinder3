@@ -26,6 +26,8 @@ setup(
         "six",
         "requests",
         "beautifulsoup4",
+        "python-dateutil",
+        "feedparser",
     ],
     description="Find the feed URLs for a website.",
     long_description=open("README.rst").read(),
