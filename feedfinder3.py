@@ -13,12 +13,7 @@ except NameError:
 if not __FEEDFINDER2_SETUP__:
     __all__ = ["find_feeds"]
 
-    from components.finders import (
-        FeedFinder,
-    )
-    from components.validators import (
-        FeedValidator,
-    )
+    from components import FeedFinder, FeedValidator
 
 
 def find_feeds(url,
