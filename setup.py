@@ -12,16 +12,16 @@ if sys.version_info[0] < 3:
 else:
     import builtins
 builtins.__FEEDFINDER2_SETUP__ = True
-import feedfinder2
+import feedfinder3
 from setuptools import setup
 
 setup(
-    name="feedfinder2",
-    version=feedfinder2.__version__,
-    url="https://github.com/dfm/feedfinder2",
+    name="feedfinder3",
+    version=feedfinder3.__version__,
+    url="https://github.com/TeodorIvanov/feedfinder3",
     license="MIT",
-    author="Dan Foreman-Mackey",
-    author_email="foreman.mackey@gmail.com",
+    author="Teodor Ivanov",
+    author_email="tdrivanov@gmail.com",
     install_requires=[
         "six",
         "requests",
@@ -31,7 +31,7 @@ setup(
     ],
     description="Find the feed URLs for a website.",
     long_description=open("README.rst").read(),
-    py_modules=["feedfinder2"],
+    py_modules=["feedfinder3"],
     classifiers=[
         "Programming Language :: Python",
         "Development Status :: 4 - Beta",
