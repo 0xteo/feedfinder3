@@ -1,8 +1,15 @@
-Feedfinder2
+Feedfinder3
 ===========
+A fork of https://github.com/dfm/feedfinder2
 
-This is a Python library for finding links feeds on a website. It is based on
-`feedfinder <http://www.aaronsw.com/2002/feedfinder/>`_ - originally
+Adding functionality to validate the activity of feeds
+
+
+Original README
+===========
+This is a Python library for finding links to feeds on a website.
+
+It is based on `feedfinder <http://www.aaronsw.com/2002/feedfinder/>`_ - originally
 written by `Mark
 Pilgrim <http://en.wikipedia.org/wiki/Mark_Pilgrim_(software_developer)>`_ and
 subsequently maintained by `Aaron
@@ -16,8 +23,15 @@ as follows:
 
 ::
 
-    from feedfinder2 import find_feeds
-    feeds = find_feeds("xkcd.com")
+    from feedfinder3 import find_feeds
+    feeds = find_feeds(
+        "xkcd.com",
+        validate_options={
+            "min_article_count": 1,  # feed should have at least 1 article
+            "max_day_interval": 30,  # feed should be updated in the last 30 days
+            "exclude_keywords": ['comments', 'jobs']  # exclude feed urls, containing "comments" or "jobs"
+        }
+    )
 
 Now, ``feeds`` is the list: ``['http://xkcd.com/atom.xml',
 'http://xkcd.com/rss.xml']``. There is some attempt made to rank feeds from
