@@ -6,7 +6,7 @@ Adding functionality to validate the activity of feeds
 
 
 Original README
-===========
+===============
 This is a Python library for finding links to feeds on a website.
 
 It is based on `feedfinder <http://www.aaronsw.com/2002/feedfinder/>`_ - originally
