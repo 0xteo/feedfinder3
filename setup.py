@@ -12,12 +12,11 @@ if sys.version_info[0] < 3:
 else:
     import builtins
 builtins.__FEEDFINDER2_SETUP__ = True
-import feedfinder3
 from setuptools import setup
 
 setup(
     name="feedfinder3",
-    version=feedfinder3.__version__,
+    version="1.0.0",
     url="https://github.com/TeodorIvanov/feedfinder3",
     license="MIT",
     author="Teodor Ivanov",
