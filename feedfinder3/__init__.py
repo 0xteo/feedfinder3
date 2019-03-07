@@ -3,7 +3,7 @@
 
 from __future__ import print_function
 
-__version__ = "0.0.6"
+__version__ = "0.0.7"
 
 try:
     __FEEDFINDER2_SETUP__
@@ -12,8 +12,7 @@ except NameError:
 
 if not __FEEDFINDER2_SETUP__:
     __all__ = ["find_feeds"]
-
-    from components import FeedFinder, FeedValidator
+    from feedfinder3.components import FeedFinder, FeedValidator
 
 
 def find_feeds(url,
